@@ -1,3 +1,4 @@
 board
-busio
+# required for busio import
+adafruit-blinka
 smbus2
