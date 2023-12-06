@@ -1,8 +1,11 @@
 import sys
+
+# 3rd party
 import board
 import busio
-from smbus2 import SMBus
+from smbus2 import SMBus, i2c_msg, i2c_rdwr
 
+# settings
 I2C_ADDRESS = 7
 SENSOR_ADDRESS = 0x7
 
@@ -28,14 +31,14 @@ b2 = bus.read_block_data(i2c_addr=7, register=0)
 
 print(f"bus.read_block_data: {b2}")
 
-
-write1 = smbus2.i2c_msg.write(SENSOR_ADDRESS, list1)
-write2 = smbus2.i2c_msg.write(SENSOR_ADDRESS, list2)
+# source: https://stackoverflow.com/questions/75767522/is-it-possible-in-smbus2-to-have-start-and-stop-conditions-as-you-wish
+write1 = i2c_msg.write(SENSOR_ADDRESS, list1)
+write2 = i2c_msg.write(SENSOR_ADDRESS, list2)
 
 num_bytes = 4
-read = smbus2.i2c_msg.read(SENSOR_ADDRESS, num_bytes)
+read = i2c_msg.read(SENSOR_ADDRESS, num_bytes)
 
-smbus2.i2c_rdwr(write1, write2, read)
+i2c_rdwr(write1, write2, read)
 data = list(read)
 print(data)
 
