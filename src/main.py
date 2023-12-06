@@ -3,7 +3,7 @@ import sys
 # 3rd party
 import board
 import busio
-from smbus2 import SMBus, i2c_msg, i2c_rdwr
+from smbus2 import SMBus, i2c_msg
 
 # settings
 I2C_ADDRESS = 7
@@ -38,7 +38,7 @@ write2 = i2c_msg.write(SENSOR_ADDRESS, list2)
 num_bytes = 4
 read = i2c_msg.read(SENSOR_ADDRESS, num_bytes)
 
-i2c_rdwr(write1, write2, read)
+bus.i2c_rdwr(write1, write2, read)
 data = list(read)
 print(data)
 
