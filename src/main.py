@@ -29,13 +29,13 @@ b2 = bus.read_block_data(i2c_addr=7, register=0)
 print(f"bus.read_block_data: {b2}")
 
 
-write1 = bus.i2c_msg.write(I2C_ADDRESS, list1)
-write2 = bus.i2c_msg.write(I2C_ADDRESS, list2)
+write1 = smbus2.i2c_msg.write(SENSOR_ADDRESS, list1)
+write2 = smbus2.i2c_msg.write(SENSOR_ADDRESS, list2)
 
 num_bytes = 4
-read = bus.i2c_msg.read(I2C_ADDRESS, num_bytes)
+read = smbus2.i2c_msg.read(SENSOR_ADDRESS, num_bytes)
 
-bus.i2c_rdwr(write1, write2, read)
+smbus2.i2c_rdwr(write1, write2, read)
 data = list(read)
 print(data)
 
