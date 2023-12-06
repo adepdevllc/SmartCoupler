@@ -3,7 +3,7 @@ import board
 import busio
 from smbus2 import SMBus
 
-SENSOR_ADDRESS = "0x7"
+SENSOR_ADDRESS = 0x7
 
 # Detect i2c devices
 i2c = busio.I2C(board.SCL, board.SDA)
